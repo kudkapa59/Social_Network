@@ -1,3 +1,6 @@
+//This file is not used anymore, it was created to show how redux works
+//We use redux-store.js instead
+
 import dialoguesReducer from "./dialogues-reducer"
 import profileReducer from "./profile-reducer"
 import sidebarReducer from "./sidebar-reducer"
