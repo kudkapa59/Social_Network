@@ -1,0 +1,45 @@
+.nav {
+    grid-area: n;
+    background-color: burlywood;
+    padding-top: 20px;
+  }
+
+.item{
+  padding: 0 0 0 20px;
+}  
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+
+.item a.activeLink{
+  color: gold;
+}
+
+.friends{
+  /* padding: 20px; */
+  color: white;
+}
+
+.friends .friendsList{
+  /* padding-left: 0; */
+}
+
+.friends h2{
+  color: white;
+  padding: 20px;
+}
+
+.friends .dot{
+    height: 45px;
+    width: 45px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.friends .friendName{
+  margin-right: 15px;
+}
