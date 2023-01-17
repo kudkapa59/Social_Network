@@ -5,13 +5,13 @@ import Message from './Message/Message';
 
 
 const Dialogues = (props) => {
-    let dialoguesElements = props.state.dialogues.map(dialogue =>
+    let dialoguesElements = props.dialoguesPage.dialogues.map(dialogue =>
         <DialogueItem name={dialogue.name} id={dialogue.id} />)
 
-    let messagesElements = props.state.messages.map(m =>
+    let messagesElements = props.dialoguesPage.messages.map(m =>
         <Message message={m.message} />)
 
-    let newMessageText = props.state.newMessageText
+    let newMessageText = props.dialoguesPage.newMessageText
 
     let onAddMessage = () => {
         props.addMessage()
