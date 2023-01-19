@@ -5,7 +5,7 @@ import Profile from './components/Profile/Profile';
 import {Route} from 'react-router-dom';
 import DialoguesContainer from './components/Dialogues/DialoguesContainer';
 import NavbarContainer from "./components/Navbar/NavbarContainer";
-import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = (props) => {
 
@@ -16,7 +16,7 @@ const App = (props) => {
             <div className='app-wrapper-content'>
                 <Route path="/dialogues" render={() => <DialoguesContainer/>}/>
                 <Route path="/profile" render={() => <Profile/>}/>
-                <Route path="/users" render={() => <Users />}/>
+                <Route path="/users" render={() => <UsersContainer />}/>
                 <Route path="/news"/>
                 <Route path="/music"/>
                 <Route path="/settings"/>
