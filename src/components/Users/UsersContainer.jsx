@@ -5,7 +5,7 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching,
+    toggleIsFetching, toggleIsFollowingInProgress,
     unfollow
 } from "../../redux/users-reducer";
 import Users from "./Users";
@@ -38,8 +38,9 @@ class UsersContainer extends React.Component {
                 : null}
             <Users totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage} users={this.props.users}
-                   onPageChanged={this.onPageChanged}
-                   follow={this.props.follow} unfollow={this.props.unfollow}/>
+                   onPageChanged={this.onPageChanged} followingInProgress={this.props.followingInProgress}
+                   follow={this.props.follow} unfollow={this.props.unfollow}
+            toggleIsFollowingInProgress={this.props.toggleIsFollowingInProgress}/>
         </>
     }
 }
@@ -50,7 +51,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
@@ -61,5 +63,6 @@ export default connect(mapStateToProps,
         setUsers,
         setCurrentPage,
         setTotalUsersCount,
-        toggleIsFetching
-    })(UsersContainer)
+        toggleIsFetching,
+        toggleIsFollowingInProgress    //We don't send Action Creators as props.
+    })(UsersContainer)                  //Instead Connect makes callbacks out of them, which dispatches what is returned by action creators.
