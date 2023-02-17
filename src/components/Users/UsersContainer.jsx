@@ -1,34 +1,18 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleIsFetching, toggleIsFollowingInProgress,
-    unfollow
+    follow, getUsers, unfollow
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/preloader";
-import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -39,8 +23,7 @@ class UsersContainer extends React.Component {
             <Users totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage} users={this.props.users}
                    onPageChanged={this.onPageChanged} followingInProgress={this.props.followingInProgress}
-                   follow={this.props.follow} unfollow={this.props.unfollow}
-            toggleIsFollowingInProgress={this.props.toggleIsFollowingInProgress}/>
+                   follow={this.props.follow} unfollow={this.props.unfollow}/>
         </>
     }
 }
@@ -57,12 +40,4 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,
-    {
-        follow,
-        unfollow,
-        setUsers,
-        setCurrentPage,
-        setTotalUsersCount,
-        toggleIsFetching,
-        toggleIsFollowingInProgress    //We don't send Action Creators as props.
-    })(UsersContainer)                  //Instead Connect makes callbacks out of them, which dispatches what is returned by action creators.
+    {follow, unfollow, getUsers})(UsersContainer)
